@@ -1,6 +1,7 @@
 import flask
 import requests
 import json
+from flask_cors import CORS
 
 ## Codigo de la instrumentacion con opentelemetry ###
 from opentelemetry import trace
@@ -37,11 +38,13 @@ trace.get_tracer_provider().add_span_processor(
 )
 ### Fin codigo instrumentacion ### 
 
+cors = CORS(app)
+
 productos = list()
-productos.append({"Id":1, "Nombre" : "Leche", "valor" : 500})
-productos.append({"Id":2, "Nombre" : "Cafe", "valor" : 600})
-productos.append({"Id":3, "Nombre" : "Azucar", "valor" : 300})
-productos.append({"Id":4, "Nombre" : "Arroz", "valor" : 400})
+productos.append({"id":1, "nombre" : "Leche", "valor" : 500})
+productos.append({"id":2, "nombre" : "Cafe", "valor" : 600})
+productos.append({"id":3, "nombre" : "Azucar", "valor" : 300})
+productos.append({"id":4, "nombre" : "Arroz", "valor" : 400})
 
 '''
 @app.route("/")
