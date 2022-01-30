@@ -41,10 +41,10 @@ trace.get_tracer_provider().add_span_processor(
 cors = CORS(app)
 
 productos = list()
-productos.append({"id":1, "nombre" : "Leche", "valor" : 500})
-productos.append({"id":2, "nombre" : "Cafe", "valor" : 600})
-productos.append({"id":3, "nombre" : "Azucar", "valor" : 300})
-productos.append({"id":4, "nombre" : "Arroz", "valor" : 400})
+productos.append({"id":0, "nombre" : "Leche", "valor" : 500})
+productos.append({"id":1, "nombre" : "Cafe", "valor" : 600})
+productos.append({"id":2, "nombre" : "Azucar", "valor" : 300})
+productos.append({"id":3, "nombre" : "Arroz", "valor" : 400})
 
 '''
 @app.route("/")
@@ -82,5 +82,8 @@ def add_producto(id=None, nombre=None, valor=None):
 # impl opentelemetry
 @app.route('/producto/<id>', methods=['DELETE'])
 def delete_producto(id=None):
-    productos.remove(productos[int(id)])
+    for prod in productos:
+        if str(prod["id"]) == id:
+            productos.remove(prod)
+            break
     return "200"
