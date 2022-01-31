@@ -1,8 +1,9 @@
-FROM python:3.10.1-alpine
+FROM python:latest
 
 WORKDIR /app
 
 COPY requirements.txt requirements.txt
+RUN /usr/local/bin/python -m pip install --upgrade pip
 RUN pip3 install -r requirements.txt
 
 COPY . .
