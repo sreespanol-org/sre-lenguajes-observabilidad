@@ -74,7 +74,7 @@ def get_producto(id=None):
 # impl opentelemetry
 @app.route('/producto/<id>/<nombre>/<valor>', methods=['POST'])
 def add_producto(id=None, nombre=None, valor=None):
-    productos.append({"Id":id, "Nombre" : nombre, "valor" : valor})
+    productos.append({"id":id, "nombre" : nombre, "valor" : valor})
     return "200"
 
 
